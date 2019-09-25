@@ -1,13 +1,16 @@
-import VueRouter from'vue-router';
+import home from './views/home'
+import about from "./views/about";
+export default {
+    mode:'history',
+    routes:[
+        {
+            path: '/',
+            component:home,
+         },
+        {
+            path: '/about',
+            component:about,
+        },
 
-
-let routes = [
-    {
-        path: '/',
-        component:'./views/home'
-    }
-]
-export default new VueRouter({
-
-    routes: routes,
-})
+    ]
+}
