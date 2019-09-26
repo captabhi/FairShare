@@ -37,18 +37,11 @@
                                         </div>
                                         <p v-if="emailInvalid" class="help" :class="{'is-danger':emailInvalid}">This email is invalid</p>
                                     </div>
-                                    <div class="field">
-                                        <label class="label">Person 1</label>
-                                        <div class="control  ">
-                                            <input class="input" type="text" placeholder="Person 1 Name" >
-                                        </div>
-                                    </div>
-
-                                    <div class="field" v-for="index in noOfShareMates">
+                                    <div class="field" v-for="(mate,index) in shareMates">
                                         <label class="label">Person {{index+1}}</label>
                                         <div class="field has-addons" >
                                             <div class="control is-expanded">
-                                                <input type="text" class="input  " v-model="shareMateTemp">
+                                                <input type="text" class="input" v-model="mate.value" :key="index">
                                             </div>
                                             <div class="control">
                                             <span @click="reduceShareMateCount">
@@ -57,7 +50,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="button" @click="addNewShareMate">
+                                    <button class="button" type="button" @click="addNewShareMate">
                                         <i class="fas fa-plus"></i>
                                         Add Person
                                     </button>
@@ -94,9 +87,7 @@
         methods: {
             addNewShareMate(){
 
-                this.noOfShareMates++;
-                this.shareMates.push(this.shareMateTemp);
-                this.shareMateTemp = "";
+                this.shareMates.push({ value: '' });
             },
             reduceShareMateCount(){
                 console.log("Calling");
