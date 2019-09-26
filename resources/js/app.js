@@ -19,7 +19,10 @@ Vue.component(
     'about',
     require('./views/about').default
 );
-
+Vue.component(
+    'newsplit',
+    require('./views/NewSplit').default
+);
 new Vue({
    el:'#app',
     data:{
