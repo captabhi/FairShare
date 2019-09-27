@@ -1909,13 +1909,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "newsplit.vue",
   data: function data() {
@@ -1932,9 +1925,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addNewShareMate: function addNewShareMate() {
-      this.noOfShareMates++;
-      this.shareMates.push(this.shareMateTemp);
-      this.shareMateTemp = "";
+      this.shareMates.push({
+        value: ''
+      });
     },
     reduceShareMateCount: function reduceShareMateCount() {
       console.log("Calling");
@@ -2712,9 +2705,7 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _vm._l(_vm.noOfShareMates, function(index) {
+                    _vm._l(_vm.shareMates, function(mate, index) {
                       return _c("div", { staticClass: "field" }, [
                         _c("label", { staticClass: "label" }, [
                           _vm._v("Person " + _vm._s(index + 1))
@@ -2727,19 +2718,20 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.shareMateTemp,
-                                  expression: "shareMateTemp"
+                                  value: mate.value,
+                                  expression: "mate.value"
                                 }
                               ],
-                              staticClass: "input  ",
+                              key: index,
+                              staticClass: "input",
                               attrs: { type: "text" },
-                              domProps: { value: _vm.shareMateTemp },
+                              domProps: { value: mate.value },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.shareMateTemp = $event.target.value
+                                  _vm.$set(mate, "value", $event.target.value)
                                 }
                               }
                             })
@@ -2760,6 +2752,7 @@ var render = function() {
                       "button",
                       {
                         staticClass: "button",
+                        attrs: { type: "button" },
                         on: { click: _vm.addNewShareMate }
                       },
                       [
@@ -2806,21 +2799,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "icon is-small is-right" }, [
       _c("i", { staticClass: "fas fa-exclamation-triangle" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("Person 1")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "control  " }, [
-        _c("input", {
-          staticClass: "input",
-          attrs: { type: "text", placeholder: "Person 1 Name" }
-        })
-      ])
     ])
   }
 ]
@@ -18393,8 +18371,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/abhishek/Documents/PersonalWork/FairShare/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/abhishek/Documents/PersonalWork/FairShare/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/abhishek/FairShare Original/FairShare/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/abhishek/FairShare Original/FairShare/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
