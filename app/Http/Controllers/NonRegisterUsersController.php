@@ -19,18 +19,18 @@ class NonRegisterUsersController extends Controller
             'data.shareMates.*'=>'required',
         ]);
 
-          //$newSplit = NonRegisterUsers();
-//        $newSplit->creator_name = request('data.creator_name');
-//        $newSplit->split_name = request('data.split_name');
-//        $newSplit->creator_email = request('data.creator_email');
-       //   $shareMates = $this->convertArrayToString(request('data.shareMates'));
-            $shareMates = request('data.shareMates');
+          $newSplit = NonRegisterUsers();
+          $newSplit->creator_name = request('data.creator_name');
+          $newSplit->split_name = request('data.split_name');
+          $newSplit->creator_email = request('data.creator_email');
+          $shareMates = request('data.shareMates');
+          $newString = implode(',', $shareMates);
+          $newSplit->all_contributers = $newString;
+          $newString->localHash = $newString->generateHash();
 
-            $newString = implode(',', $shareMates);
+            $newSplit->save();
 
-            throw new ClassCreatorException('This is a test exceptpn');
-
-          return $shareMates;
+          return $newSplit;
 
 
     }

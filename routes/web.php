@@ -11,6 +11,8 @@
 |
 */
 
+use Prophecy\Exception\Doubler\ClassCreatorException;
+
 Route::get('/', function () {
     return view('layouts.master');
 });
@@ -19,3 +21,4 @@ Route::get('/new',function (){
     return view('newSplitForm');
 });
 Route::post('/add/split/','NonRegisterUsersController@createSplit');
+

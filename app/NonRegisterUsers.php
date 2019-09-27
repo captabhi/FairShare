@@ -19,16 +19,6 @@ class NonRegisterUsers extends Model
         return $hash;
     }
 
-    public function convertArrayToString($array)
-    {
-        $string ="";
-        for($i=0;$i<count($array);$i++)
-        {
-            $string = $string+$array[$i]+",";
-        }
-
-        return $string;
-    }
 
     public function expenses()
     {

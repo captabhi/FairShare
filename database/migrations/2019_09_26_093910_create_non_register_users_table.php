@@ -16,6 +16,7 @@ class CreateNonRegisterUsersTable extends Migration
             $table->string('creator_email')->unique();
             $table->string('split_name');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('all_contributers');
             $table->timestamps();
 
         });
