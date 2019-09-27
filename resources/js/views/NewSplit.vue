@@ -52,7 +52,7 @@
                                             </div>
                                             <div class="control">
                                             <span @click="reduceShareMateCount">
-                                                <i class="button fas fa-times"></i>
+                                                <i class="button fas fa-times"></i>sco
                                             </span>
                                             </div>
                                         </div>
