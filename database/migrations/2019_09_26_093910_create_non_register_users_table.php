@@ -12,7 +12,9 @@ class CreateNonRegisterUsersTable extends Migration
         Schema::create('non_register_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('localHash')->unique();
-            $table->string('email')->unique();
+            $table->string('creator_name');
+            $table->string('creator_email')->unique();
+            $table->string('split_name');
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
 

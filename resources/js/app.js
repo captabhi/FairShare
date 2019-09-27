@@ -23,6 +23,10 @@ Vue.component(
     'newsplit',
     require('./views/NewSplit').default
 );
+Vue.component(
+    'formerror',
+    require('./components/FormErrorResponse').default
+);
 new Vue({
    el:'#app',
     data:{
