@@ -21,6 +21,7 @@ class CreateExpensesTable extends Migration
             $table->string('forWhat');
             $table->date('createdAt');
             $table->string('contributers');
+            $table->index('expenceID');
             $table->foreign('expenceID')->references('id')->on('non_register_users')->onDelete('cascade');
             $table->timestamps();
         });

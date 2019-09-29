@@ -107,14 +107,14 @@
                 let self =this;
               axios.post('/add/split/',{
                     data:this.formData
-
               }).then(function(response){
-                  console.log("Correct");
-                    console.log(response);
-
+                    window.location.href = '/splits/' +
+                        response.data.split_name +
+                        '/' + response.data.localHash;
               })
               .catch(function(error){
                     //self.emailInvalid = true;
+                  console.log("HElp");
                     self.validationErrors =error.response.data.errors;
                     console.log(self.validationErrors);
               })
@@ -128,7 +128,7 @@
             },
 
             addNameOfMate(e, index) {
-                console.log(e);
+
                 this.formData.shareMates[parseInt(index)] = e.target.value;
             }
         },

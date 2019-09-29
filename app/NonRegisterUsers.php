@@ -14,7 +14,7 @@ class NonRegisterUsers extends Model
         for($i = 0; $i <16; $i++)
         {
             $index =rand(0,strlen($characters)-1);
-            $hash = $characters[$index];
+            $hash .= $characters[$index];
         }
         return $hash;
     }

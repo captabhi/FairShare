@@ -21,4 +21,7 @@ Route::get('/new',function (){
     return view('newSplitForm');
 });
 Route::post('/add/split/','NonRegisterUsersController@createSplit');
+Route::get('/splits/{splitName}/{splitHash}','NonRegisterUsersController@splitDetails')->name('splitDetails');
 
+Route::post('/add/expense','NonRegisterUsersController@addExpense');
+Route::get('/view/expenses/{splitHash}','NonRegisterUsersController@viewAllExpense');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Expenses;
 use App\NonRegisterUsers;
 use Illuminate\Http\Request;
 use Prophecy\Exception\Doubler\ClassCreatorException;
@@ -19,21 +20,59 @@ class NonRegisterUsersController extends Controller
             'data.shareMates.*'=>'required',
         ]);
 
-          $newSplit = NonRegisterUsers();
+          $newSplit = new NonRegisterUsers;
           $newSplit->creator_name = request('data.creator_name');
           $newSplit->split_name = request('data.split_name');
           $newSplit->creator_email = request('data.creator_email');
           $shareMates = request('data.shareMates');
           $newString = implode(',', $shareMates);
           $newSplit->all_contributers = $newString;
-          $newString->localHash = $newString->generateHash();
+          $newSplit->localHash = $newSplit->generateHash();
 
             $newSplit->save();
 
-          return $newSplit;
+            return $newSplit;
+//          return redirect()->route(
+//              'splitDetails',
+//                    [
+//                        'splitName'=>$newSplit->split_name,
+//                        'splitHash'=>$newSplit->localHash
+//                    ]);
 
 
     }
+
+    public function splitDetails(Request $request,$splitName,$splitHash)
+    {
+        $splitDetails = NonRegisterUsers::where('localHash',$splitHash)->first();
+        return view('splitDetails',[
+            'splitDetails'=>$splitDetails
+        ]);
+
+    }
+
+    public function addExpense(Request $request)
+    {
+        $expense = new Expenses;
+
+        $expense->expenseType = request('data.expenseType');
+        $expense->payerName = request('data.payer');
+        $expense->amount = number_format(request('data.amount'));
+        $expense->forWhat = request('data.forWhat');
+        $expense->createdAt = request('data.when');
+        $expense->contributers = request('data.contributers');
+
+        $expense->save();
+
+        return $expense;
+    }
+    public function viewAllExpense(Request $request,$localHash)
+    {
+        $split = NonRegisterUsers::where('localHash',$localHash)->first();
+        $expense = $split->expenses;
+        return $expense;
+    }
+
 
 
 

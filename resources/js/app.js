@@ -27,6 +27,11 @@ Vue.component(
     'formerror',
     require('./components/FormErrorResponse').default
 );
+Vue.component(
+    'splitdetails',
+    require('./views/splitDetails').default
+);
+
 new Vue({
    el:'#app',
     data:{
