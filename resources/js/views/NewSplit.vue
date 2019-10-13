@@ -86,7 +86,7 @@
                     split_name:"",
                     creator_name:"",
                     creator_email:"",
-                    shareMates: [],
+                    shareMates: [""],
                 },
                 validationErrors:'',
                 noOfShareMates:0,
@@ -105,10 +105,12 @@
             },
             submit(){
                 let self =this;
+                self.formData.shareMates.push(self.formData.creator_name);
+                console.log(self.formData.shareMates);
               axios.post('/add/split/',{
                     data:this.formData
               }).then(function(response){
-                    window.location.href = '/splits/' +
+                    window.location.href = 'view/splits/' +
                         response.data.split_name +
                         '/' + response.data.localHash;
               })

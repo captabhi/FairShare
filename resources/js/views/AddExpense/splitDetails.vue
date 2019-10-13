@@ -6,6 +6,7 @@
                 <h1 class="title">
                     Enter Split Details
                 </h1>
+                <button class="button is-pulled-right" @click="redirectToExpenses">View Split Details</button>
                 <div class="field column">
                     <div class="control is-inline-block">
                         <div class="select">
@@ -31,15 +32,18 @@
                     </p>
                 </div>
                 <div class="control column">
-                    <label class="radio is-block">
-                        <input type="radio" name="answer" checked>
+                    <label class="radio is-block" for="all">
+                        <input type="radio" id="all" name="answer" value="all" v-model="splitDetailsData.splitAll" checked>
                             Split Equally
                     </label>
-                    <label class="radio" style="margin-left: 0px">
-                        <input type="radio" name="answer">
+                    <label class="radio" style="margin-left: 0px" for="all">
+                        <input type="radio" name="answer" id="different" value="different" v-model="splitDetailsData.splitAll">
                         Split Differently
                     </label>
                 </div>
+                <split-differently :allcontributors="allMates" v-if="splitDetailsData.splitAll=='different'">
+
+                </split-differently>
                 <div class="field column is-half">
                     <label class="label">
                         For What ?
@@ -77,7 +81,6 @@
         props:['splitdetailsjson'],
         data: function () {
             return {
-                splitDetails:"",
                 allMates:[],
                 splitDetailsData:{
                     payer:"",
@@ -86,23 +89,21 @@
                     when:"",
                     expenseType:"expense",
                     contributers:this.splitdetailsjson.all_contributers,
+                    id:"",
+                    splitAll:"all",
                 }
             }
         },
         mounted() {
-            this.splitDetails = this.splitdetailsjson;
-            this.allMates = this.splitDetails.all_contributers.split(',');
-            // for(let i=0;i<mates.length;i++)
-            // {
-            //     this.allMates.push({
-            //         'value':mates[i]
-            //     });
-            // }
-            // this.allMates.push({
-            //     'value':this.splitDetails.creator_name
-            // });
-            this.allMates.push(this.splitDetails.creator_name);
-            this.splitDetailsData.payer=this.allMates[0];
+            let self = this;
+            self.allMates = self.splitdetailsjson.all_contributers.split(',');
+            self.splitDetailsData.id=self.splitdetailsjson.id;
+            self.splitDetailsData.payer=self.allMates[0];
+
+            // Updating the Contributors When Selection changes in Split Differently Template
+            this.$root.$on('Event',data=>{
+                self.splitDetailsData.contributers = data.join(",");
+            })
         },
         methods: {
             sendData(){
@@ -114,6 +115,10 @@
                 }).catch(function (error) {
                     console.log(error);
                 })
+            },
+            redirectToExpenses()
+            {
+                document.location.href='/view/expenses/'+this.splitdetailsjson.localHash;
             }
         }
     }

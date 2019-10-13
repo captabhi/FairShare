@@ -1,6 +1,6 @@
 import home from './views/home'
 import about from "./views/about";
-import splitDetails from "./views/splitDetails";
+import splitDetails from "./views/AddExpense/splitDetails";
 export default {
     mode:'history',
     routes:[

@@ -16,13 +16,13 @@
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
 
-                <router-link to="/" class="navbar-item">
+                <a href="/" class="navbar-item">
                     Home
-                </router-link>
+                </a>
 
-                <router-link to="/about" class="navbar-item">
-                    About Us
-                </router-link>
+                <a href="/new" class="navbar-item">
+                    New Split
+                </a>
 
 
                 <div class="navbar-item has-dropdown is-hoverable">

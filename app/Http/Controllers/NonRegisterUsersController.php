@@ -44,6 +44,7 @@ class NonRegisterUsersController extends Controller
 
     public function splitDetails(Request $request,$splitName,$splitHash)
     {
+
         $splitDetails = NonRegisterUsers::where('localHash',$splitHash)->first();
         return view('splitDetails',[
             'splitDetails'=>$splitDetails
@@ -56,12 +57,12 @@ class NonRegisterUsersController extends Controller
         $expense = new Expenses;
 
         $expense->expenseType = request('data.expenseType');
+        $expense->non_register_users_id = request('data.id');
         $expense->payerName = request('data.payer');
-        $expense->amount = number_format(request('data.amount'));
+        $expense->amount = intval(request('data.amount'));
         $expense->forWhat = request('data.forWhat');
         $expense->createdAt = request('data.when');
         $expense->contributers = request('data.contributers');
-
         $expense->save();
 
         return $expense;
@@ -69,8 +70,14 @@ class NonRegisterUsersController extends Controller
     public function viewAllExpense(Request $request,$localHash)
     {
         $split = NonRegisterUsers::where('localHash',$localHash)->first();
-        $expense = $split->expenses;
-        return $expense;
+        $allContributors = explode(",",$split->all_contributers);
+        $expenses = $split->expenses;
+        return view('viewExpenses',[
+            'expenses'=>$expenses,
+            'splitname'=>$split->split_name,
+            'hash'=>$localHash,
+            'allcontributors'=>$allContributors,
+        ]);
     }
 
 

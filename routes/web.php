@@ -12,16 +12,23 @@
 */
 
 use Prophecy\Exception\Doubler\ClassCreatorException;
+use App\NonRegisterUsers;
 
 Route::get('/', function () {
-    return view('layouts.master');
+
+    $splitlist = NonRegisterUsers::all();
+    return view('homepage',['splitlist'=>$splitlist]
+    );
 });
 
 Route::get('/new',function (){
     return view('newSplitForm');
 });
-Route::post('/add/split/','NonRegisterUsersController@createSplit');
-Route::get('/splits/{splitName}/{splitHash}','NonRegisterUsersController@splitDetails')->name('splitDetails');
 
+
+Route::post('/add/split/','NonRegisterUsersController@createSplit');
 Route::post('/add/expense','NonRegisterUsersController@addExpense');
+
+
+Route::get('/view/splits/{splitName}/{splitHash}','NonRegisterUsersController@splitDetails')->name('splitDetails');
 Route::get('/view/expenses/{splitHash}','NonRegisterUsersController@viewAllExpense');

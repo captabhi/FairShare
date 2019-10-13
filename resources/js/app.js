@@ -9,7 +9,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 Vue.component(
     'home',
-    require('./views/home')
+    require('./views/home').default
 );
 Vue.component(
     'navbar',
@@ -29,9 +29,16 @@ Vue.component(
 );
 Vue.component(
     'splitdetails',
-    require('./views/splitDetails').default
+    require('./views/AddExpense/splitDetails').default
 );
-
+Vue.component(
+    'view-expense',
+    require('./views/viewExpenses').default
+);
+Vue.component(
+    'split-differently',
+    require('./views/AddExpense/splitDifferently').default
+)
 new Vue({
    el:'#app',
     data:{

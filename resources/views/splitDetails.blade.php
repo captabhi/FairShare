@@ -6,4 +6,6 @@
     <splitdetails :splitdetailsjson="{{json_encode($splitDetails)}}">
 
     </splitdetails>
+
+
 @endsection

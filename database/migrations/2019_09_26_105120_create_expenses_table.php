@@ -14,15 +14,14 @@ class CreateExpensesTable extends Migration
     public function up()
     {
         Schema::create('expenses', function (Blueprint $table) {
-            $table->bigIncrements('expenceID');
+            $table->bigIncrements('id');
+            $table->bigInteger('non_register_users_id');
             $table->string('expenseType');
             $table->string('payerName');
             $table->integer('amount')->default(0);
             $table->string('forWhat');
             $table->date('createdAt');
             $table->string('contributers');
-            $table->index('expenceID');
-            $table->foreign('expenceID')->references('id')->on('non_register_users')->onDelete('cascade');
             $table->timestamps();
         });
     }

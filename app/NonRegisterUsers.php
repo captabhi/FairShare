@@ -19,7 +19,6 @@ class NonRegisterUsers extends Model
         return $hash;
     }
 
-
     public function expenses()
     {
         return $this->hasMany(Expenses::class);
