@@ -59,13 +59,14 @@
 
                                     </div>
                                 </div>
+                                <hr style="color: black;background: black;background-color: black">
+                                <h1 class="has-text-centered title has-text-black" > All Expenses</h1>
+                                <expense-wrapper v-for="exp in allExpenses" :exp="exp" :key="exp.id"></expense-wrapper>
                             </div>
                         </section>
                     </div>
                 </div>
-                <div class="columns">
 
-                </div>
 
 
             </div>

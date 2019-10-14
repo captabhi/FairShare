@@ -37,8 +37,12 @@ Vue.component(
 );
 Vue.component(
     'split-differently',
-    require('./views/AddExpense/splitDifferently').default
-)
+    require('./components/splitDifferently').default
+);
+Vue.component(
+    'expense-wrapper',
+    require('./components/ExpenseDetailsWrapper').default
+);
 new Vue({
    el:'#app',
     data:{
