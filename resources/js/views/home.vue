@@ -1,23 +1,19 @@
 <template>
     <div class="container">
-        <div class="hero">
-            <div class="hero-body">
-                <h1 class="has-text-centered">
-                HOMEPAGE
-                </h1>
-                    <ul>
-                        <li v-for="split in splitList">
-                            <a :href="'view/splits/'+split.split_name+'/'+split.localHash">
-                                {{split.split_name}}
-                            </a>
-
-                        </li>
-                    </ul>
+        <div class="columns">
+            <div class="column is-half">
+                <figure class="image">
+                    <img  src="../../Images/Homepage-Logo.svg">
+                </figure>
 
             </div>
+            <div class="column is-half ">
+                <h1 class="title is-1"><span >FAIR</span><span style="color: seagreen">SHARE</span></h1>
+                <h3 class="subtitle is-3" style="color: seagreen">Split your expenses easily...</h3>
+                <button class="button is-primary is-outlined">Get started</button>
+                <button class="button is-primary is-outlined">Outlined</button>
+            </div>
         </div>
-         <h1>
-         </h1>
     </div>
 </template>
 
